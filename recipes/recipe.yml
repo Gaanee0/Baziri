@@ -1,16 +1,27 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
 name: Baziri
-# description will be included in the image's metadata
-description: This is my personal OS image.
+description: Bazzite Nvidia open with Niri & DMS.
 
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 42 # latest is also supported if you want new updates ASAP
+alt-tags:
+  - workstation
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
+base-image: ghcr.io/ublue-os/bazzite-dx-nvidia
+image-version: latest 
+
+blue-build-tag:
+  - latest-installer
+
+#  nushell-version
+#  -latest
+
+platforms:
+  -linux-amd64
+
+stages:
+  - name: bongo-cat
+  - image: 
+
 modules:
   - type: files
     files:
