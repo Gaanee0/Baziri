@@ -1,6 +1,5 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-<<<<<<< HEAD
 name: Baziri
 description: Bazzite Nvidia open with Niri & DMS.
 
@@ -21,22 +20,34 @@ platforms:
 
 stages:
   - name: bongo-cat
-  - image: 
+    from: ghcr.io/ublue-os/fedora-toolbox:latest
+    modules:
+      - type: script
+        no-cache: true
+        snippets:
+          - dnf install -y \
+              git \
+              make \
+              gcc \
+              clang \
+              pkg-config \
+              wayland-devel \
+              wayland-protocls-devel
+          - git clone https://github.com/saatvik333/wayland-bongocat.git /src/wayland-bongocat
+          - cd /src/wayland-bongocat
+          - make
+          - mkdir -p /out
+          - cp wayland-bongocat /out
 
-=======
-# image will be published to ghcr.io/<user>/<name>
-name: template
-# description will be included in the image's metadata
-description: This is my personal OS image.
-
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 42 # latest is also supported if you want new updates ASAP
-
-# module configuration, executed in order
-# you can include multiple instances of the same module
->>>>>>> template/main
 modules:
+  - type: copy
+    from: bongo-cat
+    src: /out/wayland-bongocat
+    dest: /usr/bin/wayland-bongocat
+  - type: script
+    snippets:
+      - chmod +x /usr/bin/wayland-bongocat
+      
   - type: files
     files:
       - source: system
