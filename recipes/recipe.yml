@@ -9,14 +9,14 @@ alt-tags:
 base-image: ghcr.io/ublue-os/bazzite-dx-nvidia
 image-version: latest 
 
-blue-build-tag:
-  - latest-installer
+#blue-build-tag:
+#  - latest-installer
 
 #  nushell-version
 #  -latest
 
-platforms:
-  -linux-amd64
+#platforms:
+#  -linux-amd64
 
 stages:
   - name: bongo-cat
