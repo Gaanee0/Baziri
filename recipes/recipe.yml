@@ -25,7 +25,7 @@ stages:
       - type: script
         no-cache: true
         snippets:
-          - dnf install -y git make gcc clan  pkg-config wayland-devel wayland-protocols-devel
+          - dnf install -y git make gcc clang pkg-config wayland-devel wayland-protocols-devel
           - git clone https://github.com/saatvik333/wayland-bongocat.git /src/wayland-bongocat
           - cd /src/wayland-bongocat
           - make
